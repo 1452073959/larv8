@@ -33,6 +33,7 @@ class TdDealController extends AdminController
             // 显示快捷编辑按钮
             $grid->showQuickEditButton();
             $grid->toolsWithOutline(false);
+            $grid->model()->orderBy('id', 'desc');
             $grid->column('id')->sortable();
             $grid->column('brand_id');
             $grid->column('merchant_name');
