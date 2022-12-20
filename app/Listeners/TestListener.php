@@ -47,7 +47,7 @@ class TestListener implements ShouldQueue
 
         $event=$event->str;
 
-        $a=file_put_contents("log99s.txt",$event.PHP_EOL,FILE_APPEND );
+        $a=file_put_contents("log99s.txt",date('Y-m-d H:i:s',time()).$event.PHP_EOL,FILE_APPEND );
         Log::alert("测试3333333333".$a.json($event));
     }
 
