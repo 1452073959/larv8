@@ -44,12 +44,11 @@ class TestListener implements ShouldQueue
      */
     public function handle(TestEvent $event)
     {
-        //
 
         $event=$event->str;
-//                dd(json_encode($event,true));
-        file_put_contents("../log22222s.txt",json_encode($event,true).PHP_EOL,FILE_APPEND);
-        Log::alert("测试".json_encode($event,true));
+
+        $a=file_put_contents("log99s.txt",$event.PHP_EOL,FILE_APPEND );
+        Log::alert("测试3333333333".$a.json($event));
     }
 
     /**

@@ -57,7 +57,7 @@ if (!function_exists('json')) {
      * @param array $options 参数
      * @return \think\response\Json
      */
-    function json($data = [], $code = 200, $header = [], $options = [])
+    function json($data = [])
     {
         return response()->json($data);
     }
