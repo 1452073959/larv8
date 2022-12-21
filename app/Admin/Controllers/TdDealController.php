@@ -20,6 +20,22 @@ class TdDealController extends AdminController
     protected function grid()
     {
         return Grid::make(new TdDeal(), function (Grid $grid) {
+
+
+            $grid->selector(function (Grid\Tools\Selector $selector) {
+                $selector->select('brand_id', '品牌', [
+                    1 => '电银',
+                    2=>'联动',
+                    3=>'收付贝',
+                    4=>'钱宝',
+                    5=>'合利宝',
+                    6=>'金控',
+                    7=>'海科',
+                    8=>'付临门',
+                ]);
+            });
+
+
             $grid->withBorder();
             $grid->addTableClass(['table-text-center']);//文字居中
 //            $grid->number();
@@ -35,7 +51,6 @@ class TdDealController extends AdminController
             $grid->toolsWithOutline(false);
             $grid->model()->orderBy('id', 'desc');
             $grid->column('id')->sortable();
-            $grid->column('system_no');
             $grid->column('brand_id');
             $grid->column('merchant_name');
             $grid->column('merchant_code');
@@ -58,7 +73,7 @@ class TdDealController extends AdminController
                     return "<div style='width: 1000px; padding:20px 20px 0'>$card</div>";
                 });;
             $grid->column('Raw_data')
-                ->display('推送数据') // 设置按钮名称
+                ->display('推送交易') // 设置按钮名称
                 ->expand(function () {
                     // 返回显示的详情
                     // 这里返回 content 字段内容，并用 Card 包裹起来
@@ -67,7 +82,7 @@ class TdDealController extends AdminController
                     return "<div style='width: 1000px; padding:20px 20px 0'>$card</div>";
                 });;
             $grid->column('deal_rate');
-//            $grid->column('created_at');
+            $grid->column('created_at');
             $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {

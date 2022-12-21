@@ -65,7 +65,8 @@ class TdDeal extends Model
 //    }
     public function getBrandIdAttribute($value)
     {
-        $type = [0=>"未处理",
+        $type = [
+            0=>"未处理",
             1 => '电银',
             2=>'联动',
             3=>'收付贝',

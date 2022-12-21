@@ -41,7 +41,7 @@ $api->version('v1', [
     //合利宝
     $api->any('notice/helibao', 'NoticeController@helibao');
     //金控
-    $api->any('notice/jingkong', 'NoticeController@jingkong');
+    $api->any('notice/jinkong', 'NoticeController@jinkong');
     //海科
     $api->any('notice/haike', 'NoticeController@haike');
     //付临门

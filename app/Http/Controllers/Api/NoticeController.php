@@ -114,7 +114,7 @@ class NoticeController extends Controller
         return 'success';
     }
 //    ..金控
-    public function jingkong(Request $request){
+    public function jinkong(Request $request){
         //接受数据
         $input = $request->all();;
 
