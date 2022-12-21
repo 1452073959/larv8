@@ -35,6 +35,7 @@ class TdDealController extends AdminController
             $grid->toolsWithOutline(false);
             $grid->model()->orderBy('id', 'desc');
             $grid->column('id')->sortable();
+            $grid->column('system_no');
             $grid->column('brand_id');
             $grid->column('merchant_name');
             $grid->column('merchant_code');
@@ -56,8 +57,17 @@ class TdDealController extends AdminController
 
                     return "<div style='width: 1000px; padding:20px 20px 0'>$card</div>";
                 });;
+            $grid->column('Raw_data')
+                ->display('推送数据') // 设置按钮名称
+                ->expand(function () {
+                    // 返回显示的详情
+                    // 这里返回 content 字段内容，并用 Card 包裹起来
+                    $card = new Card(null, $this->Raw_data);
+
+                    return "<div style='width: 1000px; padding:20px 20px 0'>$card</div>";
+                });;
             $grid->column('deal_rate');
-            $grid->column('created_at');
+//            $grid->column('created_at');
             $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {

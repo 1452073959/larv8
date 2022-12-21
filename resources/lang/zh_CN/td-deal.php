@@ -10,6 +10,7 @@ return [
         'merchant_code' => '商户编号',
         'sn' => 'sn',
         'agent_no' => '代理商',
+        'system_no' => '系统单号',
         'deal_money' => '交易金额',
         'settleamount_money' => '结算额',
         'service_money' => '手续费',

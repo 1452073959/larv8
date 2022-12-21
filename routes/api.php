@@ -30,6 +30,7 @@ $api->version('v1', [
     $api->get('test', 'DealController@index');
     $api->get('http', 'DealController@http');
     $api->any('event', 'DealController@event');
-    $api->any('notice', 'NoticeController@dy');
+    $api->any('notice/dianyin', 'NoticeController@dy');
+    $api->any('notice/liandong', 'NoticeController@liandong');
 });
 

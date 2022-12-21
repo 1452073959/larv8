@@ -62,3 +62,76 @@ if (!function_exists('json')) {
         return response()->json($data);
     }
 }
+
+function RSA_openssl($data, $type = 'encode')
+{
+    if (empty($data)) {
+        return 'data参数不能为空';
+    }
+    if (is_array($data)) {
+        return 'data参数不能是数组形式';
+    }
+
+    $rsa_public = config('rsa_public');
+    if (empty($rsa_public)) {
+        $rsa_public = '-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCeopXN60n8FkAHqKAn8xe5/qD9
+AYjZilJq6T2HE+odQ+i1x1Eycnb6Nwmyi8qIPCjbVCf3jqu8ZVObuK2yBUhWT1/W
+D03kihcXj8jRuUQGMZs3rpbWveBy7MXQ0BigrceFl7m4fMNTM4SnUpU22QakGHSC
+ywQFdku3QXFOz5+UrwIDAQAB
+-----END PUBLIC KEY-----';
+    }
+    $rsa_private = config('rsa_private');
+    if (empty($rsa_private)) {
+        $rsa_private = '-----BEGIN PRIVATE KEY-----
+MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJ6ilc3rSfwWQAeo
+oCfzF7n+oP0BiNmKUmrpPYcT6h1D6LXHUTJydvo3CbKLyog8KNtUJ/eOq7xlU5u4
+rbIFSFZPX9YPTeSKFxePyNG5RAYxmzeulta94HLsxdDQGKCtx4WXubh8w1MzhKdS
+lTbZBqQYdILLBAV2S7dBcU7Pn5SvAgMBAAECgYBj2E9TgTFa4iJA78iF/IJFhdeM
+Bwg8a8w+EDmyqD0lWFXC/AXGK7do+3U2FLhQERViHtDdBsZe2KPMEmv47Uw+URua
+MTH70RB+M3znfk2h2P0bf+PS1OMo1NOXo0BYdCqtgfT5k01B4ZYN0Nhr5gIp1lGI
++PWpEMIwGeGKRRWAAQJBAMvC8EfBz11cEwphIpmuVKePs3k9NxZdkR+xPCGD7zHM
+RiFp4K/ZvBduX6JOmzkL4eXCFF2B3PWn0PLYsW0qVK8CQQDHTfV7gfKpZI0TlRuB
+4lbbP1EQIrmpADSvZLmUL5iQLPYwDGJlVPNMOQnc6M8PMDBWMCFRmF0nROuv97Ys
+rsABAkBes0QvZYE118Q1r72ABYjss5nrQCspJuV7AEl9Hi9+Sn1RrD60HBMSJMcn
+zTbRRZeAzDng16lVNuCi7VlQ7jqbAkEAn5Na3tXP7jL1Bd3YFWmc85TBmfLDxn3E
+sT4rnGtzctSdFSGFUu7uknQE4pyA1P9XZFrLAqLEyyFSuCTU9vfAAQJARtdRPRgb
+gN9qP3ogtQOEXjGVuW+IZYC/NV2o5+TvGAe3OwNGDWq4AChXla8nF2FMNnrYcqy9
+Y+AkAg8grZ1WRg==
+-----END PRIVATE KEY-----';
+    }
+
+    //私钥解密
+    if ($type == 'decode') {
+        $private_key = openssl_pkey_get_private($rsa_private);
+        if (!$private_key) {
+            return ('私钥不可用');
+        }
+        $content = base64_decode($data);
+        //把需要解密的内容，按128位拆开解密
+        $result = '';
+        for ($i = 0; $i < strlen($content) / 128; $i++) {
+            $data = substr($content, $i * 128, 128);
+            openssl_private_decrypt($data, $decrypt, $private_key);
+            $result .= $decrypt;
+        }
+        openssl_free_key($private_key);
+        return $result;
+    }
+
+    //公钥加密
+    $key = openssl_pkey_get_public($rsa_public);
+    if (!$key) {
+        return ('公钥不可用');
+    }
+    $crypted = array();
+    $data = $data;
+    $dataArray = str_split($data, 117);
+    foreach ($dataArray as $subData) {
+        $subCrypted = null;
+        openssl_public_encrypt($subData, $subCrypted, $key);
+        $crypted[] = $subCrypted;
+    }
+    $crypted = implode('', $crypted);
+    return base64_encode($crypted);
+}

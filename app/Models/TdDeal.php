@@ -19,7 +19,7 @@ class TdDeal extends Model
     ];
     protected $table = 'td_deal';
     public $fillable = [
-        'brand_id', 'merchant_name', 'merchant_code', 'sn', 'agent_no', 'deal_money', 'settleamount_money', 'rrn', 'deal_time', 'deal_status', 'deal_rate','json_data'
+        'brand_id', 'merchant_name', 'merchant_code', 'sn', 'agent_no', 'deal_money', 'settleamount_money', 'rrn', 'deal_time', 'deal_status', 'deal_rate','json_data','Raw_data','system_no'
     ];
 
     /**
@@ -63,6 +63,13 @@ class TdDeal extends Model
 //        });
 
 //    }
+    public function getBrandIdAttribute($value)
+    {
+        $type = [0=>"未处理",1 => '电银',2=>'联动'];
+
+        return $type[$value];
+    }
+
 
 
 

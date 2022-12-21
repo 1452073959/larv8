@@ -18,16 +18,25 @@ class DealObserver
 
     public function creating(TdDeal $data)
     {
+
+
         if (!$data->service_money) {
             $data->service_money =round($data['deal_money'] - $data['settleamount_money'],2) ;
         }
-        if (!$data->deal_rate) {
-            $data->deal_rate = round(($data['service_money'] / $data['deal_money']) * 100, 3);
+        //订单号
+        if(!$data->system_no){
+            $data->system_no =date('YmdHis').str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);;        // 订单流水号前缀
         }
-        if (!$data->service_money || !$data->deal_rate) {
-            return false;
+        if($data['service_money']||$data['deal_money']){
+            if (!$data->deal_rate) {
+                $data->deal_rate = round(($data['service_money'] / $data['deal_money']) * 100, 3);
+            }
         }
         // 判断是否已经存在
+        if (TdDeal::query()->where('system_no', $data['system_no'])->exists()) {
+            \Log::warning('该订单已存在' . $data['system_no']);
+            return false;
+        }
         if (TdDeal::query()->where('rrn', $data['rrn'])->exists()) {
             \Log::warning('该订单已存在' . $data['rrn']);
             return false;
@@ -45,7 +54,7 @@ class DealObserver
     {
         //创建完成后发送事件
         dump($tdDeal->toArray());
-        event(new TestEvent($tdDeal));
+//        event(new TestEvent($tdDeal));
     }
 
 
