@@ -65,7 +65,16 @@ class TdDeal extends Model
 //    }
     public function getBrandIdAttribute($value)
     {
-        $type = [0=>"未处理",1 => '电银',2=>'联动'];
+        $type = [0=>"未处理",
+            1 => '电银',
+            2=>'联动',
+            3=>'收付贝',
+            4=>'钱宝',
+            5=>'合利宝',
+            6=>'金控',
+            7=>'海科',
+            8=>'付临门',
+        ];
 
         return $type[$value];
     }

@@ -65,15 +65,89 @@ class NoticeController extends Controller
         return 'success';
 
     }
-
+    //联动
     public function liandong(Request $request){
         //接受数据
         $input = $request->all();;
 
         $data=[
+            'brand_id'=>'2',
             'Raw_data'=>Tojson($input)
         ];
          $res=TdDeal::create($data);
+        return 'success';
+    }
+    //收付贝
+    public function shoufubei(Request $request){
+        //接受数据
+        $input = $request->all();;
+
+        $data=[
+            'brand_id'=>'3',
+            'Raw_data'=>Tojson($input)
+        ];
+        $res=TdDeal::create($data);
+        return 'success';
+    }
+    //钱宝
+    public function qianbao(Request $request){
+        //接受数据
+        $input = $request->all();;
+
+        $data=[
+            'brand_id'=>'4',
+            'Raw_data'=>Tojson($input)
+        ];
+        $res=TdDeal::create($data);
+        return 'success';
+    }
+    //合利宝
+    public function helibao(Request $request){
+        //接受数据
+        $input = $request->all();;
+
+        $data=[
+            'brand_id'=>'5',
+            'Raw_data'=>Tojson($input)
+        ];
+        $res=TdDeal::create($data);
+        return 'success';
+    }
+//    ..金控
+    public function jingkong(Request $request){
+        //接受数据
+        $input = $request->all();;
+
+        $data=[
+            'brand_id'=>'6',
+            'Raw_data'=>Tojson($input)
+        ];
+        $res=TdDeal::create($data);
+        return 'success';
+    }
+
+    //    ..海科
+    public function haike(Request $request){
+        //接受数据
+        $input = $request->all();;
+
+        $data=[
+            'brand_id'=>'7',
+            'Raw_data'=>Tojson($input)
+        ];
+        $res=TdDeal::create($data);
+        return 'success';
+    }
+
+    public function fulingmeng(Request $request){
+        //接受数据
+        $input = $request->all();;
+
+        $data=[
+            'brand_id'=>'8',
+            'Raw_data'=>Tojson($input)
+        ];
+        $res=TdDeal::create($data);
         return 'success';
     }
 

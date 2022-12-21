@@ -30,7 +30,21 @@ $api->version('v1', [
     $api->get('test', 'DealController@index');
     $api->get('http', 'DealController@http');
     $api->any('event', 'DealController@event');
+    //电银
     $api->any('notice/dianyin', 'NoticeController@dy');
+   // 联动
     $api->any('notice/liandong', 'NoticeController@liandong');
+    //收付贝
+    $api->any('notice/shoufubei', 'NoticeController@shoufubei');
+    //钱宝
+    $api->any('notice/qianbao', 'NoticeController@qianbao');
+    //合利宝
+    $api->any('notice/helibao', 'NoticeController@helibao');
+    //金控
+    $api->any('notice/jingkong', 'NoticeController@jingkong');
+    //海科
+    $api->any('notice/haike', 'NoticeController@haike');
+    //付临门
+    $api->any('notice/fulingmeng', 'NoticeController@fulingmeng');
 });
 
