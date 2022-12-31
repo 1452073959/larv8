@@ -46,5 +46,7 @@ $api->version('v1', [
     $api->any('notice/haike', 'NoticeController@haike');
     //付临门
     $api->any('notice/fulingmeng', 'NoticeController@fulingmeng');
+    //合利宝gm
+    $api->any('notice/hlbgm', 'NoticeController@hlbgm');
 });
 

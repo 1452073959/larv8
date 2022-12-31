@@ -150,5 +150,18 @@ class NoticeController extends Controller
         $res=TdDeal::create($data);
         return 'success';
     }
+    //合利宝gm
+    public function hlbgm(Request $request){
+
+        //接受数据
+        $input = $request->all();
+
+        $data=[
+            'brand_id'=>'9',
+            'Raw_data'=>Tojson($input)
+        ];
+        $res=TdDeal::create($data);
+        return 'success';
+    }
 
 }
