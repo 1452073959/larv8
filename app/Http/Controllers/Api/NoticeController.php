@@ -163,5 +163,17 @@ class NoticeController extends Controller
         $res=TdDeal::create($data);
         return 'success';
     }
+    //拉卡拉
+    public function lakala(Request $request){
 
+        //接受数据
+        $input = $request->all();
+
+        $data=[
+            'brand_id'=>'10',
+            'Raw_data'=>Tojson($input)
+        ];
+        $res=TdDeal::create($data);
+        return 'success';
+    }
 }

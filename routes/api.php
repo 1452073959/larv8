@@ -48,5 +48,7 @@ $api->version('v1', [
     $api->any('notice/fulingmeng', 'NoticeController@fulingmeng');
     //合利宝gm
     $api->any('notice/hlbgm', 'NoticeController@hlbgm');
+    //拉卡拉
+    $api->any('notice/lakala', 'NoticeController@lakala');
 });
 
