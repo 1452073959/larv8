@@ -173,10 +173,10 @@ class NoticeController extends Controller
     {
         //接受数据
         $input = $request->all();;
-
         $data = [
             'brand_id' => '2',
-            'Raw_data' => Tojson($input)
+            'Raw_data' => Tojson($input),
+            'agent_no' =>$input['agent_no']
         ];
         $res = TdDeal::create($data);
         return 'success';
