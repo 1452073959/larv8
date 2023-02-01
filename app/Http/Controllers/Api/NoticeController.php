@@ -146,7 +146,8 @@ class NoticeController extends Controller
 
         $data = [
             'brand_id' => '9',
-            'Raw_data' => Tojson($input)
+            'Raw_data' => Tojson($input),
+            'to_url' => 'https://tdnetwork.cn/notice/helibao2/payment'
         ];
         $res = TdDeal::create($data);
         return 'success';
