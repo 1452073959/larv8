@@ -46,11 +46,17 @@ $api->version('v1', [
     $api->any('notice/fulingmeng', 'NoticeController@fulingmeng');
     //合利宝gm
     $api->any('notice/hlbgm', 'NoticeController@hlbgm');
+    //收付贝gm
+    $api->any('notice/helibao3', 'NoticeController@sfbgm');
     //拉卡拉
     $api->any('notice/lakala', 'NoticeController@lakala');
-    // 联动
-    $api->any('notice/liandong', 'NoticeController@liandong');
     //快钱
     $api->any('notice/zhonfu', 'NoticeController@zhonfu');
+    // 联动liandong8600083
+    $api->any('notice/liandong', 'NoticeController@liandong');
+    //国通
+    $api->any('notice/guotong', 'NoticeController@guotong');
+
+
 });
 

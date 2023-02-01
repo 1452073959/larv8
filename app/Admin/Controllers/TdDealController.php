@@ -34,7 +34,9 @@ class TdDealController extends AdminController
                     8=>'付临门',
                     9=>'合利宝gm',
                     10=>'拉卡拉',
-                    11=>'中付'
+                    11=>'中付',
+                    12=>'收付贝GM',
+                    13=>'国通'
                 ]);
             });
 

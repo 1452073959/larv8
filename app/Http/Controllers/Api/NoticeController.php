@@ -36,20 +36,6 @@ class NoticeController extends Controller
 
     }
 
-    //中付
-    public function zhonfu(Request $request)
-    {
-        //接受数据
-        $input = $request->all();;
-
-        $data = [
-            'brand_id' => '11',
-            'Raw_data' => Tojson($input),
-            'to_url' => 'https://tdnetwork.cn/notice/kuaiqian/index'
-        ];
-        $res = TdDeal::create($data);
-        return 'success';
-    }
 
     //收付贝
     public function shoufubei(Request $request)
@@ -163,6 +149,53 @@ class NoticeController extends Controller
         $data = [
             'brand_id' => '10',
             'Raw_data' => Tojson($input)
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
+    //中付
+    public function zhonfu(Request $request)
+    {
+        //接受数据
+        $input = $request->all();;
+
+        $data = [
+            'brand_id' => '11',
+            'Raw_data' => Tojson($input),
+            'to_url' => 'https://tdnetwork.cn/notice/kuaiqian/index'
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
+
+
+    //收付贝gm
+    public function sfbgm(Request $request)
+    {
+
+        //接受数据
+        $input = $request->all();
+
+        $data = [
+            'brand_id' => '12',
+            'Raw_data' => Tojson($input),
+            'to_url' => 'https://tdnetwork.cn/notice/helibao3/payment'
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
+
+    //国通
+    public function guotong(Request $request)
+    {
+
+        //接受数据
+        $input = $request->all();
+
+        $data = [
+            'brand_id' => '13',
+            'Raw_data' => Tojson($input),
+            'to_url' => 'https://tdnetwork.cn/notice/guotong/trade'
         ];
         $res = TdDeal::create($data);
         return 'success';
