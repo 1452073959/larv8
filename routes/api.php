@@ -32,8 +32,6 @@ $api->version('v1', [
     $api->any('event', 'DealController@event');
     //电银
     $api->any('notice/dianyin', 'NoticeController@dy');
-   // 联动
-    $api->any('notice/liandong', 'NoticeController@liandong');
     //收付贝
     $api->any('notice/shoufubei', 'NoticeController@shoufubei');
     //钱宝
@@ -50,5 +48,9 @@ $api->version('v1', [
     $api->any('notice/hlbgm', 'NoticeController@hlbgm');
     //拉卡拉
     $api->any('notice/lakala', 'NoticeController@lakala');
+    // 联动
+    $api->any('notice/liandong', 'NoticeController@liandong');
+    //快钱
+    $api->any('notice/zhonfu', 'NoticeController@zhonfu');
 });
 
