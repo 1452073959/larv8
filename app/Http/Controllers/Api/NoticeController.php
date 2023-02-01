@@ -117,7 +117,8 @@ class NoticeController extends Controller
 
         $data = [
             'brand_id' => '8',
-            'Raw_data' => Tojson($input)
+            'Raw_data' => Tojson($input),
+              'agent_no' =>$input['agent_no']
         ];
         $res = TdDeal::create($data);
         return 'success';
