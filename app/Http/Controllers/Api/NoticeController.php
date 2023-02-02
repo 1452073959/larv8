@@ -16,6 +16,7 @@ class NoticeController extends Controller
         //接受数据
         $input = $request->all();;
 
+
         $data = [
             'brand_id' => '1',
             'merchant_name' => $input['merc_name'],
@@ -32,7 +33,11 @@ class NoticeController extends Controller
             'Raw_data' => Tojson($input),
             'to_url' => 'https://tdnetwork.cn/notice/dianyin/index'
         ];
-        $res=TdDeal::create($data);
+        if(isset($input['Exception'])) {
+            $data['send_status']=5;
+            $data['Exception']=$input['Exception'];
+         }
+        TdDeal::create($data);
         return 'success';
 
     }
