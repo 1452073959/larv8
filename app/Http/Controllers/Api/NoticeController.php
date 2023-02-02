@@ -15,6 +15,7 @@ class NoticeController extends Controller
     {
         //接受数据
         $input = $request->all();;
+
         $data = [
             'brand_id' => '1',
             'merchant_name' => $input['merc_name'],
@@ -31,7 +32,7 @@ class NoticeController extends Controller
             'Raw_data' => Tojson($input),
             'to_url' => 'https://tdnetwork.cn/notice/dianyin/index'
         ];
-        TdDeal::create($data);
+        $res=TdDeal::create($data);
         return 'success';
 
     }
@@ -199,7 +200,7 @@ class NoticeController extends Controller
             'to_url' => 'https://tdnetwork.cn/notice/guotong/trade'
         ];
         $res = TdDeal::create($data);
-        return 'success';
+        return json(['errorcode' => "00000", 'timestamp' => time()]);
     }
 
     //联动8600083

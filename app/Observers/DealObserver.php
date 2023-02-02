@@ -37,10 +37,10 @@ class DealObserver
             \Log::warning('该订单已存在' . $data['system_no']);
             return false;
         }
-        if (TdDeal::query()->where('rrn', $data['rrn'])->exists()) {
-            \Log::warning('该订单已存在' . $data['rrn']);
-            return false;
-        }
+//        if (TdDeal::query()->where('rrn', $data['rrn'])->exists()) {
+//            \Log::warning('该订单已存在' . $data['rrn']);
+//            return false;
+//        }
         dump($data->toArray());
     }
 
