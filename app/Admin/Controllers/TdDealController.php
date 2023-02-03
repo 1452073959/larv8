@@ -21,7 +21,6 @@ class TdDealController extends AdminController
     {
         return Grid::make(new TdDeal(), function (Grid $grid) {
 
-
             $grid->selector(function (Grid\Tools\Selector $selector) {
                 $selector->select('brand_id', '品牌', [
                     1 => '电银',
@@ -38,7 +37,16 @@ class TdDealController extends AdminController
                     12=>'收付贝GM',
                     13=>'国通'
                 ]);
+                $selector->select('send_status', '状态', [
+                    1 => '待发送',
+                    2 => '已发送',
+                    3 => '忽略',
+                    4 => '失败',
+                    5 => '异常',
+
+                ]);
             });
+
 
 
             $grid->withBorder();
@@ -57,16 +65,18 @@ class TdDealController extends AdminController
             $grid->model()->orderBy('id', 'desc');
             $grid->column('id')->sortable();
             $grid->column('brand_id');
-            $grid->column('merchant_name');
-            $grid->column('merchant_code');
-            $grid->column('sn');
+//            $grid->column('merchant_name');
+//            $grid->column('merchant_code');
+//            $grid->column('sn');
             $grid->column('agent_no');
-            $grid->column('deal_money');
-            $grid->column('settleamount_money');
-            $grid->column('service_money');
-            $grid->column('deal_type');
-            $grid->column('rrn');
-            $grid->column('deal_time');
+//            $grid->column('deal_money');
+//            $grid->column('settleamount_money');
+//            $grid->column('service_money');
+//            $grid->column('deal_type');
+//            $grid->column('rrn');
+//            $grid->column('deal_time');
+            $grid->column('send_status');
+            $grid->column('Exception');
 //            $grid->column('deal_status');
             $grid->column('json_data')
                 ->display('详情') // 设置按钮名称

@@ -15,7 +15,7 @@ class SendNotice implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $url='http://49.235.76.14:687';
+    public $url = 'http://49.235.76.14:687';
     /**
      * 任务可尝试次数.
      *
@@ -62,67 +62,67 @@ class SendNotice implements ShouldQueue
 
         //
         dump($this->data['brand_id']);
-        $status= TdDeal::find($this->data['id']);
+        $status = TdDeal::find($this->data['id']);
         if ($this->data['brand_id'] == "联动") {
 //            dump( json_decode($this->data['Raw_data'],true));die;
             if ($this->data['agent_no'] == 8600083) {
-                $res = http_post_data($this->url."/notice/Liandong/transOrderNofity", json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600118) {
-                $res = http_post_data($this->url."/notice/Liandong2/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong2/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600123) {
-                $res = http_post_data($this->url."/notice/Liandong3/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong3/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600137) {
-                $res = http_post_data($this->url."/notice/Liandong4/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong4/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600139) {
-                $res = http_post_data($this->url."/notice/Liandong5/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong5/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600157) {
-                $res = http_post_data($this->url."/notice/Liandong6/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong6/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600158) {
-                $res = http_post_data($this->url."/notice/Liandong7/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong7/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600167) {
-                $res = http_post_data($this->url."/notice/Liandong8/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong8/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600169) {
-                $res = http_post_data($this->url."/notice/Liandong9/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong9/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600180) {
-                $res = http_post_data($this->url."/notice/Liandong10/transOrderNofity", json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong10/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600190) {
-                $res = http_post_data($this->url."/notice/Liandong11/transOrderNofity", json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong11/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600210) {
-                $res = http_post_data($this->url."/notice/Liandong12/transOrderNofity", json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong12/transOrderNofity", json_decode($this->data['Raw_data'], true));
             } elseif ($this->data['agent_no'] == 8600214) {
-                $res = http_post_data($this->url."/notice/Liandong13/transOrderNofity",json_decode($this->data['Raw_data'],true));
+                $res = http_post_data($this->url . "/notice/Liandong13/transOrderNofity", json_decode($this->data['Raw_data'], true));
             }
-        }elseif($this->data['brand_id'] == "电银"){
-            $res = http_post_data($this->url."/notice/dianyin/index", json_decode($this->data['Raw_data'],true));
-        }elseif($this->data['brand_id'] == "收付贝"){
-            $res = http_post_data($this->url."/notice/shoufubei/payment", json_decode($this->data['Raw_data'],true));
-        }elseif($this->data['brand_id'] == "钱宝"){
-            $res = http_post_data($this->url."/notice/qianbao/index", json_decode($this->data['Raw_data'],true));
-        }elseif($this->data['brand_id'] == "合利宝"){
-            $res = http_post_data($this->url."/notice/helibao/payment", json_decode($this->data['Raw_data'],true));
-        }elseif($this->data['brand_id'] == "金控"){
-            $res = http_post_data($this->url."/notice/Jinkong/transOrderNofity", json_decode($this->data['Raw_data'],true));
-        }elseif($this->data['brand_id'] == "海科"){
-            $res = http_post_data($this->url."/notice/Haike/trade", json_decode($this->data['Raw_data'],true));
-        }elseif($this->data['brand_id'] == "合利宝GM"){
-            $res = http_post_data($this->url."/notice/helibao2/payment", json_decode($this->data['Raw_data'],true));
-        }else{
+        } elseif ($this->data['brand_id'] == "电银") {
+            $res = http_post_data($this->url . "/notice/dianyin/index", json_decode($this->data['Raw_data'], true));
+        } elseif ($this->data['brand_id'] == "收付贝") {
+            $res = http_post_data($this->url . "/notice/shoufubei/payment", json_decode($this->data['Raw_data'], true));
+        } elseif ($this->data['brand_id'] == "钱宝") {
+            $res = http_post_data($this->url . "/notice/qianbao/index", json_decode($this->data['Raw_data'], true));
+        } elseif ($this->data['brand_id'] == "合利宝") {
+            $res = http_post_data($this->url . "/notice/helibao/payment", json_decode($this->data['Raw_data'], true));
+        } elseif ($this->data['brand_id'] == "金控") {
+            $res = http_post_data($this->url . "/notice/Jinkong/transOrderNofity", json_decode($this->data['Raw_data'], true));
+        } elseif ($this->data['brand_id'] == "海科") {
+            $res = http_post_data($this->url . "/notice/Haike/trade", json_decode($this->data['Raw_data'], true));
+        } elseif ($this->data['brand_id'] == "合利宝GM") {
+            $res = http_post_data($this->url . "/notice/helibao2/payment", json_decode($this->data['Raw_data'], true));
+        } elseif ($this->data['brand_id'] == "国通") {
+            $res = http_post_data($this->url . "/notice/guotong/trade", json_decode($this->data['Raw_data'], true));
+        } else {
             echo "跳过!";
-            $status->send_status='3';
+            $status->send_status = '3';
             $status->save();
             return;
         }
-        if($res['0']!="200"){
+        if ($res['0'] != "200") {
             $this->fail();
-            $status->send_status='4';
+            $status->send_status = '4';
             echo "失败!";
-        }else{
-            $status->send_status='2';
+        } else {
+            $status->send_status = '2';
             echo "成功!";
         }
         $status->save();
-
-
 
 
     }
