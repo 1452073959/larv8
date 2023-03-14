@@ -221,5 +221,17 @@ class NoticeController extends Controller
         $res = TdDeal::create($data);
         return 'success';
     }
+    //新金控
+    public function xjk(Request $request)
+    {
+        //接受数据
+        $input = $request->all();;
+        $data = [
+            'brand_id' => '14',
+            'Raw_data' => Tojson($input),
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
 
 }

@@ -56,7 +56,7 @@ $api->version('v1', [
     $api->any('notice/liandong', 'NoticeController@liandong');
     //国通
     $api->any('notice/guotong', 'NoticeController@guotong');
-
-
+    //新金控
+    $api->any('notice/xjk', 'NoticeController@xjk');
 });
 
