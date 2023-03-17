@@ -234,4 +234,18 @@ class NoticeController extends Controller
         return 'success';
     }
 
+    //收付贝2.0
+    public function shoufubei2(Request $request)
+    {
+        //接受数据
+        $input = $request->all();;
+
+        $data = [
+            'brand_id' => '15',
+            'Raw_data' => Tojson($input)
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
+
 }

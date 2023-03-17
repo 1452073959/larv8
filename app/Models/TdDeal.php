@@ -80,7 +80,8 @@ class TdDeal extends Model
             11=>'中付',
             12=>'收付贝GM',
             13=>'国通',
-            14=>'新金控'
+            14=>'新金控',
+            15=>'收付贝2.0'
         ];
 
         return $type[$value];

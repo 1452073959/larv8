@@ -58,5 +58,8 @@ $api->version('v1', [
     $api->any('notice/guotong', 'NoticeController@guotong');
     //新金控
     $api->any('notice/xjk', 'NoticeController@xjk');
+    //2.0收付贝
+    $api->any('notice/shoufubei2', 'NoticeController@shoufubei2');
+
 });
 
