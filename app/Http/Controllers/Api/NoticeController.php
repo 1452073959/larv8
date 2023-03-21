@@ -192,6 +192,22 @@ class NoticeController extends Controller
         return 'success';
     }
 
+    public function sfbgm4(Request $request)
+    {
+
+        //接受数据
+        $input = $request->all();
+
+        $data = [
+            'brand_id' => '16',
+            'Raw_data' => Tojson($input),
+            'to_url' => 'https://tdnetwork.cn/notice/helibao4/payment'
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
+
+
     //国通
     public function guotong(Request $request)
     {

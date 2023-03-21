@@ -48,6 +48,8 @@ $api->version('v1', [
     $api->any('notice/hlbgm', 'NoticeController@hlbgm');
     //收付贝gm
     $api->any('notice/helibao3', 'NoticeController@sfbgm');
+    //收付贝gm,纵横伙伴
+    $api->any('notice/helibao4', 'NoticeController@sfbgm4');
     //拉卡拉
     $api->any('notice/lakala', 'NoticeController@lakala');
     //快钱
@@ -60,6 +62,7 @@ $api->version('v1', [
     $api->any('notice/xjk', 'NoticeController@xjk');
     //2.0收付贝
     $api->any('notice/shoufubei2', 'NoticeController@shoufubei2');
+
 
 });
 
