@@ -38,7 +38,9 @@ class TdDealController extends AdminController
                     13=>'国通',
                     14=>'新金控',
                     15=>'收付贝2.0',
-                    16=>'纵横伙伴收付贝gm'
+                    16=>'纵横伙伴收付贝gm',
+                     17=>'河南新中付',
+                     18=>'纵横伙伴联动优势'
                 ]);
                 $selector->select('send_status', '状态', [
                     1 => '待发送',

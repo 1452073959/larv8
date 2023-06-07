@@ -41,7 +41,19 @@ class NoticeController extends Controller
         return 'success';
 
     }
-
+    //联动8600083
+    public function liandong(Request $request)
+    {
+        //接受数据
+        $input = $request->all();;
+        $data = [
+            'brand_id' => '2',
+            'Raw_data' => Tojson($input),
+            'agent_no' =>$input['agent_no']
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
 
     //收付贝
     public function shoufubei(Request $request)
@@ -191,23 +203,6 @@ class NoticeController extends Controller
         $res = TdDeal::create($data);
         return 'success';
     }
-
-    public function sfbgm4(Request $request)
-    {
-
-        //接受数据
-        $input = $request->all();
-
-        $data = [
-            'brand_id' => '16',
-            'Raw_data' => Tojson($input),
-            'to_url' => 'https://tdnetwork.cn/notice/helibao4/payment'
-        ];
-        $res = TdDeal::create($data);
-        return 'success';
-    }
-
-
     //国通
     public function guotong(Request $request)
     {
@@ -224,19 +219,6 @@ class NoticeController extends Controller
         return json(['errorcode' => "00000", 'timestamp' => time()]);
     }
 
-    //联动8600083
-    public function liandong(Request $request)
-    {
-        //接受数据
-        $input = $request->all();;
-        $data = [
-            'brand_id' => '2',
-            'Raw_data' => Tojson($input),
-            'agent_no' =>$input['agent_no']
-        ];
-        $res = TdDeal::create($data);
-        return 'success';
-    }
     //新金控
     public function xjk(Request $request)
     {
@@ -259,6 +241,49 @@ class NoticeController extends Controller
         $data = [
             'brand_id' => '15',
             'Raw_data' => Tojson($input)
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
+    //纵横伙伴联收付贝gm
+    public function sfbgm4(Request $request)
+    {
+
+        //接受数据
+        $input = $request->all();
+
+        $data = [
+            'brand_id' => '16',
+            'Raw_data' => Tojson($input),
+            'to_url' => 'https://tdnetwork.cn/notice/helibao4/payment'
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
+    //纵横伙伴联动优势gm
+    public function ldys(Request $request)
+    {
+        //接受数据
+        $input = $request->all();
+
+        $data = [
+            'brand_id' => '18',
+            'Raw_data' => Tojson($input),
+            'to_url' => 'https://tdnetwork.cn/notice/helibao4/payment'
+        ];
+        $res = TdDeal::create($data);
+        return 'success';
+    }
+
+    //新中付
+    public function xzf(Request $request)
+    {
+        //接受数据
+        $input = $request->all();
+
+        $data = [
+            'brand_id' => '17',
+            'Raw_data' => Tojson($input),
         ];
         $res = TdDeal::create($data);
         return 'success';

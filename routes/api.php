@@ -62,7 +62,10 @@ $api->version('v1', [
     $api->any('notice/xjk', 'NoticeController@xjk');
     //2.0收付贝
     $api->any('notice/shoufubei2', 'NoticeController@shoufubei2');
-
+    //新中付
+    $api->any('notice/xzf', 'NoticeController@xzf');
+    //联动优势
+    $api->any('notice/ldys', 'NoticeController@ldys');
 
 });
 
