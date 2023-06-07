@@ -296,17 +296,18 @@ class NoticeController extends Controller
     {
         //接受数据
         $input = $request->all();
-        Logwrite::dispatch($input);
-/*        $data = [
-            'url' => $input['url'],
-            'method' => $input['method'],
-            'params' => Tojson($input['params']),
-            'domain' => $input['domain'],
-            'time' => $input['time'],
-            'response_code' => $input['status'],
-            'response_content' => $input['content'],
-        ];
-        $res = Td1Log::create($data);*/
+            $data = [
+                    'url' => $input['url'],
+                    'method' => $input['method'],
+                    'params' => Tojson($input['params']),
+                    'domain' => $input['domain'],
+                    'time' => $input['time'],
+                    'response_code' => isset($input['status'])?$input['status']:'',
+                    'response_content' => isset($input['content'])?$input['content']:'',
+                ];
+
+        Logwrite::dispatch($data);
+//        $res = Td1Log::create($data);
         return 'success';
     }
 

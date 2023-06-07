@@ -39,6 +39,7 @@ class Logwrite implements ShouldQueue
     public function __construct($data)
     {
         $this->data = $data;
+
         //
     }
 
@@ -50,22 +51,12 @@ class Logwrite implements ShouldQueue
     public function handle()
     {
         $input=$this->data;
-        $data = [
-            'url' => $input['url'],
-            'method' => $input['method'],
-            'params' => Tojson($input['params']),
-            'domain' => $input['domain'],
-            'time' => $input['time'],
-            'response_code' => $input['status'],
-            'response_content' => $input['content'],
-        ];
-
-        if($data['domain']=='tdnetwork.cn'){
-            Td1Log::create($data);
-        }elseif ($data['domain']=='td2.tdnetwork.cn'){
-            Td2Log::create($data);
-        }elseif ($data['domain']=='zf.tdnetwork.cn'){
-            NzfLog::create($data);
+        if($input['domain']=='tdnetwork.cn'){
+            Td1Log::create($input);
+        }elseif ($input['domain']=='td2.tdnetwork.cn'){
+            Td2Log::create($input);
+        }elseif ($input['domain']=='zf.tdnetwork.cn'){
+            NzfLog::create($input);
         }
 
     }
