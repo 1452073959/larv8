@@ -61,6 +61,8 @@ class SendNotice implements ShouldQueue
 //            log::write($res);
 
         //
+
+        die;;
         dump($this->data['brand_id']);
         $status = TdDeal::find($this->data['id']);
         if ($this->data['brand_id'] == "联动") {
@@ -108,12 +110,15 @@ class SendNotice implements ShouldQueue
             $res = http_post_data($this->url . "/notice/helibao2/payment", json_decode($this->data['Raw_data'], true));
         } elseif ($this->data['brand_id'] == "国通") {
             $res = http_post_data($this->url . "/notice/guotong/trade", json_decode($this->data['Raw_data'], true));
+        } elseif ($this->data['brand_id'] == "拉卡拉") {
+            $res = http_post_data("https://td2.tdnetwork.cn/notice/lakala/trade", json_decode($this->data['Raw_data'], true));
         } else {
             echo "跳过!";
             $status->send_status = '3';
             $status->save();
             return;
         }
+        dump($res);
         if ($res['0'] != "200") {
             $this->fail();
             $status->send_status = '4';

@@ -66,6 +66,9 @@ $api->version('v1', [
     $api->any('notice/xzf', 'NoticeController@xzf');
     //联动优势
     $api->any('notice/ldys', 'NoticeController@ldys');
+    //1.0日志
+    $api->any('tudin/log', 'NoticeController@log');
+
 
 });
 

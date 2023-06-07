@@ -59,38 +59,25 @@ class SendNoticeDy implements ShouldQueue
 
         //
         dump($this->data['brand_id']);
+//        dump(json_decode($this->data['Raw_data'],true));
+
         $status= TdDeal::find($this->data['id']);
-        if ($this->data['brand_id'] == "联动") {
+        if ($this->data['brand_id'] == "收付贝") {
 //            dump( json_decode($this->data['Raw_data'],true));die;
-            if ($this->data['agent_no'] == 8600083) {
-                $res = http_post_data($this->url."/notice/Liandong/transOrderNofity", json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600118) {
-                $res = http_post_data($this->url."/notice/Liandong2/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600123) {
-                $res = http_post_data($this->url."/notice/Liandong3/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600137) {
-                $res = http_post_data($this->url."/notice/Liandong4/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600139) {
-                $res = http_post_data($this->url."/notice/Liandong5/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600157) {
-                $res = http_post_data($this->url."/notice/Liandong6/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600158) {
-                $res = http_post_data($this->url."/notice/Liandong7/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600167) {
-                $res = http_post_data($this->url."/notice/Liandong8/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600169) {
-                $res = http_post_data($this->url."/notice/Liandong9/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600180) {
-                $res = http_post_data($this->url."/notice/Liandong10/transOrderNofity", json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600190) {
-                $res = http_post_data($this->url."/notice/Liandong11/transOrderNofity", json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600210) {
-                $res = http_post_data($this->url."/notice/Liandong12/transOrderNofity", json_decode($this->data['Raw_data'],true));
-            } elseif ($this->data['agent_no'] == 8600214) {
-                $res = http_post_data($this->url."/notice/Liandong13/transOrderNofity",json_decode($this->data['Raw_data'],true));
-            }
-        }elseif($this->data['brand_id'] == "电银"){
-            $res = http_post_data($this->url."/notice/dianyin/pay", json_decode($this->data['Raw_data'],true));
+            $data = json_decode($this->data['Raw_data'], true); // 将JSON字符串解析为数组
+
+            $data['data'] = htmlspecialchars_decode($data['data']); // 解码HTML实体字符
+//            dump($data);
+            $data=  json_encode($data, true);
+            dump($data);
+                $res = http_post_data($this->url."/notice/shoufubei/payment", $data);
+        }elseif($this->data['brand_id'] == "金控"){
+            $res = http_post_data($this->url."/notice/Jinkong/transOrderNofity", json_decode($this->data['Raw_data'],true));
+        }elseif($this->data['brand_id'] == "海科"){
+            $res = http_post_data($this->url."/notice/Haike/trade", json_decode($this->data['Raw_data'],true));}/*elseif($this->data['brand_id'] == "电银"){
+            $res = http_post_data($this->url."/notice/dianyin/index", json_decode($this->data['Raw_data'],true));
+            dump($res);die;
+            echo 123;
         }elseif($this->data['brand_id'] == "收付贝"){
             $res = http_post_data($this->url."/notice/shoufubei/payment", json_decode($this->data['Raw_data'],true));
         }elseif($this->data['brand_id'] == "钱宝"){
@@ -108,7 +95,9 @@ class SendNoticeDy implements ShouldQueue
             $status->send_status='3';
             $status->save();
             return;
-        }
+        }*/
+
+        dump($res);
         if($res['0']!="200"){
             $this->fail();
             $status->send_status='4';

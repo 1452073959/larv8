@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Events\TestEvent;
 use App\Http\Controllers\Controller;
+use App\Jobs\Logwrite;
 use App\Jobs\SendNotice;
+use App\Models\Td1Log;
 use App\Models\TdDeal;
 use Illuminate\Http\Request;
 
@@ -286,6 +288,25 @@ class NoticeController extends Controller
             'Raw_data' => Tojson($input),
         ];
         $res = TdDeal::create($data);
+        return 'success';
+    }
+
+    //1.0的日志
+    public function log(Request $request)
+    {
+        //接受数据
+        $input = $request->all();
+        Logwrite::dispatch($input);
+/*        $data = [
+            'url' => $input['url'],
+            'method' => $input['method'],
+            'params' => Tojson($input['params']),
+            'domain' => $input['domain'],
+            'time' => $input['time'],
+            'response_code' => $input['status'],
+            'response_content' => $input['content'],
+        ];
+        $res = Td1Log::create($data);*/
         return 'success';
     }
 
