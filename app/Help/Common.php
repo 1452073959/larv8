@@ -1,7 +1,7 @@
 <?php
 function Tojson($data)
 {
-    return json_encode($data,true);
+    return json_encode($data,JSON_UNESCAPED_UNICODE);
 }
 
 function http_post_data($url, $data_string)
